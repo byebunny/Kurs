@@ -1,7 +1,12 @@
 /** 
+* @file Errors.h
+* @author Маматкулова Р.А.
+* @version 1.0
+* @date 21.11.2024
+* @copyright ИБСТ ПГУ
 * @brief Заголовочный файл для модуля Errors
 */
-
+#pragma once
 #include <string>
 #include <chrono>
 #include <ctime>

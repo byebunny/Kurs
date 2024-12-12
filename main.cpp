@@ -4,7 +4,7 @@
 */
 #include <getopt.h>
 #include "ServerClientInterface.h"
-
+#include "Errors.h"
 
 using namespace std;
 
@@ -25,7 +25,7 @@ void help(){
 * @brief Функция для получения от оператора параметров командной строки
 */
 int main (int argc, char *argv[]){
-
+try{
 	// Опции командной строки
     const struct option long_options[] = {
         {"Ip", optional_argument, nullptr, 'i'},
@@ -107,7 +107,11 @@ int main (int argc, char *argv[]){
     newServer.set_address(address);
     newServer.set_port(port);
     newServer.interaction(database, logFile);
-
+	} catch (const std::invalid_argument& e) {
+        std::cerr << "Поймано критичное исключение: " << e.what() << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Поймано стандартное исключение: " << e.what() << std::endl;
+    }
     // ./server -i127.0.0.1 -p33333 -dDB.conf -llog.conf
 	return 0;
 }
